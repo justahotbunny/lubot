@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <LolCard summoner="18Hnxe8uIW0U8R5joJfle4GLdLTN7ym9qI-9It10HfBwfQ4" API="RGAPI-55b86d13-f0c5-446f-98f7-570e2b9fcc82"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LolCard from './components/LolCard.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    LolCard
   }
 }
 </script>
