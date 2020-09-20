@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <LolCard summoner="18Hnxe8uIW0U8R5joJfle4GLdLTN7ym9qI-9It10HfBwfQ4" API="RGAPI-55b86d13-f0c5-446f-98f7-570e2b9fcc82"/>
+    <LolCard summoner="" API="" />
   </div>
 </template>
 
 <script>
-import LolCard from './components/LolCard.vue'
+import LolCard from "./components/LolCard.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    LolCard
-  }
-}
+    LolCard,
+  },
+};
 </script>
 
 <style>
