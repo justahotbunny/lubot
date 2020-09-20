@@ -4,19 +4,19 @@
     <div v-if="info !=null" class="courses-container" v-bind:class="{ 'slide': slideIn, 'hide': hide }">
       <div class="course">
         <div class="course-preview">
-          <h6>{{info['summonerName']}}</h6>
-          <h2>JavaScript Fundamentals</h2>
-          <a href="#">View all chapters <i class="fas fa-chevron-right"></i></a>
+          
+          <img alt="Vue logo"  :src="'./assets/'+info['tier'] + '.png'">
+          <h2>{{info['rank']}}</h2>
         </div>
         <div class="course-info">
           <div class="progress-container">
             <div class="progress"></div>
             <span class="progress-text">
-              6/9 Challenges
+              {{(info['wins']/(info['wins']+info['losses'])*100).toFixed(2)}}
             </span>
           </div>
           <h6>Chapter 4</h6>
-          <h2>Callbacks & Closures</h2>
+          <h2>{{info['summonerName']}}</h2>
           <button class="btn">Continue</button>
         </div>
       </div>
@@ -65,18 +65,20 @@ export default {
 
       client.on('message', (channel, tags, message) => {
         if (message.toLowerCase() === "!elo") {
-          axios.get('https://cors-anywhere.herokuapp.com/https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/'+this.summoner+'?api_key='+this.API)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            if (response.data[0]['queueType'] == 'RANKED_SOLO_5x5') {
-              this.info = response.data[0]
-            }{
-              this.info = response.data[1]
-            }            
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
+          if (info == null) {
+              axios.get('https://cors-anywhere.herokuapp.com/https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/'+this.summoner+'?api_key='+this.API)
+              .then(response => {
+                // JSON responses are automatically parsed.
+                if (response.data[0]['queueType'] == 'RANKED_SOLO_5x5') {
+                  this.info = response.data[0]
+                }{
+                  this.info = response.data[1]
+                }            
+              })
+              .catch(e => {
+                this.errors.push(e)
+              })
+          }
           this.hide = false
           this.slideIn = true
           setTimeout(() => {
